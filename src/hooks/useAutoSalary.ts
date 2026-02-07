@@ -12,7 +12,7 @@ export function useAutoSalary() {
   const { data: transactions, isSuccess } = useTransactions(month);
   const addTransaction = useAddTransaction();
   const hasRun = useRef(false);
-
+//effect
   useEffect(() => {
     if (hasRun.current) return;
     if (!isSuccess || !transactions) return;
