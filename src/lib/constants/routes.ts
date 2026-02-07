@@ -1,0 +1,16 @@
+export const ROUTES = {
+  HOME: "/",
+  LOGIN: "/login",
+  SIGNUP: "/signup",
+  ONBOARDING: "/onboarding",
+  DASHBOARD: "/dashboard",
+  TRANSACTIONS: "/transactions",
+  ADD_TRANSACTION: "/transactions/add",
+  BUDGET: "/budget",
+  BILLS: "/bills",
+  ADD_BILL: "/bills/add",
+  CHALLENGES: "/challenges",
+  ASSISTANT: "/assistant",
+  LEARN: "/learn",
+  SETTINGS: "/settings",
+} as const;
