@@ -12,9 +12,9 @@ import clsx from "clsx";
 import type { TransactionType, ExpenseCategory } from "@/types/transaction";
 
 const types: { value: TransactionType; label: string; color: string; gradient: string }[] = [
-  { value: "income", label: "Income", color: "text-success", gradient: "from-success/20 to-success/5" },
-  { value: "expense", label: "Expense", color: "text-danger", gradient: "from-danger/20 to-danger/5" },
-  { value: "savings", label: "Savings", color: "text-savings", gradient: "from-savings/20 to-savings/5" },
+  { value: "income", label: "Income", color: "text-success", gradient: "from-success/25 to-success/10" },
+  { value: "expense", label: "Expense", color: "text-danger", gradient: "from-danger/25 to-danger/10" },
+  { value: "savings", label: "Savings", color: "text-savings", gradient: "from-savings/25 to-savings/10" },
 ];
 
 export default function AddTransactionPage() {
@@ -59,7 +59,7 @@ export default function AddTransactionPage() {
       <div className="flex items-center gap-3 mb-8">
         <button
           onClick={() => router.back()}
-          className="w-10 h-10 rounded-xl bg-surface-raised border border-border-subtle flex items-center justify-center hover:border-border transition-colors"
+          className="w-10 h-10 rounded-xl bg-surface-overlay border border-border-subtle flex items-center justify-center hover:border-border transition-colors"
         >
           <HiOutlineArrowLeft className="w-5 h-5 text-muted" />
         </button>
@@ -78,7 +78,7 @@ export default function AddTransactionPage() {
                 "py-3 rounded-2xl font-semibold text-sm transition-all border",
                 type === t.value
                   ? `bg-gradient-to-b ${t.gradient} border-transparent ${t.color} shadow-sm`
-                  : "bg-surface-raised border-border-subtle text-muted hover:border-border"
+                  : "bg-surface-overlay border-border-subtle text-muted hover:border-border"
               )}
             >
               {t.label}

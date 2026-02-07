@@ -80,7 +80,7 @@ export default function SettingsPage() {
 
       {/* Profile card */}
       <div className="card card-glow p-6 flex flex-col items-center mb-6 lg:flex-row lg:gap-6 lg:items-center">
-        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-savings/20 border-2 border-border flex items-center justify-center mb-3">
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/25 to-savings/25 border-2 border-border flex items-center justify-center mb-3">
           <span className="text-2xl font-bold text-primary-light font-[family-name:var(--font-display)]">{initial}</span>
         </div>
         <h2 className="text-lg font-bold text-foreground font-[family-name:var(--font-display)]">
@@ -92,7 +92,7 @@ export default function SettingsPage() {
       {/* Info rows */}
       <div className="card divide-y divide-border-subtle">
         <div className="flex items-center gap-4 p-4">
-          <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
             <HiOutlineEnvelope className="w-5 h-5 text-primary" />
           </div>
           <div className="flex-1">
@@ -101,7 +101,7 @@ export default function SettingsPage() {
           </div>
         </div>
         <div className="flex items-center gap-4 p-4">
-          <div className="w-10 h-10 rounded-xl bg-warning/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-warning/15 flex items-center justify-center">
             <HiOutlineBriefcase className="w-5 h-5 text-warning" />
           </div>
           <div className="flex-1">
@@ -112,7 +112,7 @@ export default function SettingsPage() {
 
         {/* Monthly Income — editable */}
         <div className="flex items-center gap-4 p-4">
-          <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-success/15 flex items-center justify-center">
             <HiOutlineCurrencyRupee className="w-5 h-5 text-success" />
           </div>
           <div className="flex-1">
@@ -133,7 +133,7 @@ export default function SettingsPage() {
         {/* Salary Date (if fixed income) */}
         {profile?.incomeType === "fixed" && (
           <div className="flex items-center gap-4 p-4">
-            <div className="w-10 h-10 rounded-xl bg-savings/10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-savings/15 flex items-center justify-center">
               <HiOutlineCalendarDays className="w-5 h-5 text-savings" />
             </div>
             <div className="flex-1">
@@ -187,7 +187,7 @@ export default function SettingsPage() {
                     "px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border",
                     Number(incomeValue) === amt
                       ? "bg-primary/10 border-primary text-primary"
-                      : "bg-surface-raised border-border-subtle text-muted hover:text-foreground hover:border-border"
+                      : "bg-surface-overlay border-border-subtle text-muted hover:text-foreground hover:border-border"
                   )}
                 >
                   ₹{amt >= 100000 ? `${amt / 100000}L` : `${amt / 1000}K`}
@@ -235,7 +235,7 @@ export default function SettingsPage() {
       {/* Sign out */}
       <button
         onClick={handleSignOut}
-        className="w-full mt-6 flex items-center justify-center gap-2 h-12 rounded-2xl border border-danger/20 text-danger text-sm font-semibold hover:bg-danger/10 transition-colors"
+        className="w-full mt-6 flex items-center justify-center gap-2 h-12 rounded-2xl border border-danger/25 text-danger text-sm font-semibold hover:bg-danger/10 transition-colors"
       >
         <HiOutlineArrowRightOnRectangle className="w-5 h-5" />
         Sign Out

@@ -54,7 +54,7 @@ export default function TransactionsPage() {
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={() => setMonth(getPreviousMonth(month))}
-          className="w-10 h-10 rounded-xl bg-surface-raised border border-border-subtle flex items-center justify-center hover:border-border transition-colors"
+          className="w-10 h-10 rounded-xl bg-surface-overlay border border-border-subtle flex items-center justify-center hover:border-border transition-colors"
         >
           <HiOutlineChevronLeft className="w-5 h-5 text-muted" />
         </button>
@@ -64,7 +64,7 @@ export default function TransactionsPage() {
         <button
           onClick={() => setMonth(getNextMonth(month))}
           disabled={month >= getCurrentMonth()}
-          className="w-10 h-10 rounded-xl bg-surface-raised border border-border-subtle flex items-center justify-center hover:border-border transition-colors disabled:opacity-30"
+          className="w-10 h-10 rounded-xl bg-surface-overlay border border-border-subtle flex items-center justify-center hover:border-border transition-colors disabled:opacity-30"
         >
           <HiOutlineChevronRight className="w-5 h-5 text-muted" />
         </button>
@@ -96,7 +96,7 @@ export default function TransactionsPage() {
         </div>
       ) : grouped.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-16 h-16 rounded-full bg-surface-raised flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-full bg-surface-overlay flex items-center justify-center mb-4">
             <HiOutlineBanknotes className="w-8 h-8 text-muted" />
           </div>
           <p className="text-sm text-muted font-medium">No transactions yet</p>
@@ -125,9 +125,9 @@ export default function TransactionsPage() {
                       className="card p-4 flex items-center gap-3 group"
                     >
                       <div className={clsx("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", {
-                        "bg-success/10": t.type === "income",
-                        "bg-danger/10": t.type === "expense",
-                        "bg-savings/10": t.type === "savings",
+                        "bg-success/15": t.type === "income",
+                        "bg-danger/15": t.type === "expense",
+                        "bg-savings/15": t.type === "savings",
                       })}>
                         <Icon className={clsx("w-5 h-5", cfg.color)} />
                       </div>
@@ -153,7 +153,7 @@ export default function TransactionsPage() {
                             deleteMutation.mutate(t.id);
                           }
                         }}
-                        className="ml-1 p-1.5 rounded-lg hover:bg-danger/10 transition-all text-danger/40 hover:text-danger/80"
+                        className="ml-1 p-1.5 rounded-lg hover:bg-danger/10 transition-all text-danger/50 hover:text-danger/80"
                       >
                         <HiOutlineTrash className="w-3.5 h-3.5" />
                       </button>

@@ -150,7 +150,7 @@ export default function AssistantPage() {
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-4 space-y-4">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-savings/20 flex items-center justify-center mb-4">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/25 to-savings/25 flex items-center justify-center mb-4">
               <HiOutlineSparkles className="w-8 h-8 text-primary" />
             </div>
             <p className="text-sm font-semibold text-foreground mb-1">Ask me anything</p>
@@ -162,7 +162,7 @@ export default function AssistantPage() {
                 <button
                   key={prompt}
                   onClick={() => sendMessage(prompt)}
-                  className="px-3 py-2 rounded-xl bg-surface-raised border border-border-subtle text-xs font-medium text-muted hover:text-foreground hover:border-border transition-all"
+                  className="px-3 py-2 rounded-xl bg-surface-overlay border border-border-subtle text-xs font-medium text-muted hover:text-foreground hover:border-border transition-all"
                 >
                   {prompt}
                 </button>
@@ -181,7 +181,7 @@ export default function AssistantPage() {
                 "max-w-[80%] lg:max-w-[60%] px-4 py-3 rounded-2xl text-sm leading-relaxed",
                 msg.role === "user"
                   ? "bg-primary text-white rounded-br-md"
-                  : "glass-light text-foreground rounded-bl-md"
+                  : "bg-surface-overlay border border-border-subtle text-foreground rounded-bl-md"
               )}
             >
               {msg.role === "assistant" ? (
@@ -195,7 +195,7 @@ export default function AssistantPage() {
 
         {loading && (
           <div className="flex justify-start">
-            <div className="glass-light px-4 py-3 rounded-2xl rounded-bl-md flex items-center gap-1">
+            <div className="bg-surface-overlay border border-border-subtle px-4 py-3 rounded-2xl rounded-bl-md flex items-center gap-1">
               <div className="w-2 h-2 rounded-full bg-muted animate-bounce" />
               <div className="w-2 h-2 rounded-full bg-muted animate-bounce" style={{ animationDelay: "0.1s" }} />
               <div className="w-2 h-2 rounded-full bg-muted animate-bounce" style={{ animationDelay: "0.2s" }} />

@@ -39,7 +39,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 bg-surface border-r border-border-subtle z-40">
+    <aside className="hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 bg-surface border-r border-border-subtle shadow-[1px_0_8px_rgba(0,0,0,0.04)] z-40">
       {/* Brand */}
       <div className="px-6 py-6 border-b border-border-subtle">
         <div className="flex items-center gap-3">
@@ -64,8 +64,8 @@ export default function Sidebar() {
               className={clsx(
                 "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
                 active
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted hover:bg-surface-raised hover:text-foreground"
+                  ? "bg-primary/15 text-primary font-semibold"
+                  : "text-muted hover:bg-surface-overlay hover:text-foreground"
               )}
             >
               <item.icon className={clsx("w-5 h-5", active ? "text-primary" : "text-muted")} />
@@ -78,7 +78,7 @@ export default function Sidebar() {
         {/* Add transaction button */}
         <Link
           href={ROUTES.ADD_TRANSACTION}
-          className="flex items-center gap-3 px-4 py-3 mt-4 rounded-xl bg-gradient-to-r from-primary/10 to-savings/10 text-primary text-sm font-semibold border border-primary/20 hover:border-primary/40 transition-all"
+          className="flex items-center gap-3 px-4 py-3 mt-4 rounded-xl bg-gradient-to-r from-primary/15 to-savings/15 text-primary text-sm font-semibold border border-primary/25 hover:border-primary/50 transition-all"
         >
           <HiOutlinePlus className="w-5 h-5" />
           Add Transaction
@@ -92,11 +92,11 @@ export default function Sidebar() {
           className={clsx(
             "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
             pathname === ROUTES.SETTINGS
-              ? "bg-primary/10 text-primary"
-              : "text-muted hover:bg-surface-raised hover:text-foreground"
+              ? "bg-primary/15 text-primary"
+              : "text-muted hover:bg-surface-overlay hover:text-foreground"
           )}
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/20 to-savings/20 border border-border-subtle flex items-center justify-center">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary/25 to-savings/25 border border-border-subtle flex items-center justify-center">
             <span className="text-xs font-bold text-primary-light">{initial}</span>
           </div>
           <div className="flex-1 min-w-0">

@@ -13,7 +13,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  themeColor: "#050a0f",
+  themeColor: "#FAFAF7",
 };
 
 export default function RootLayout({
@@ -35,7 +35,6 @@ export default function RootLayout({
         <QueryProvider>
           <AuthProvider>
             <ToastProvider>
-              <div className="mesh-gradient" aria-hidden="true" />
               {children}
             </ToastProvider>
           </AuthProvider>

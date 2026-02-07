@@ -51,7 +51,7 @@ export default function AddBillPage() {
       <div className="flex items-center gap-3 mb-8">
         <button
           onClick={() => router.back()}
-          className="w-10 h-10 rounded-xl bg-surface-raised border border-border-subtle flex items-center justify-center hover:border-border transition-colors"
+          className="w-10 h-10 rounded-xl bg-surface-overlay border border-border-subtle flex items-center justify-center hover:border-border transition-colors"
         >
           <HiOutlineArrowLeft className="w-5 h-5 text-muted" />
         </button>
@@ -109,8 +109,8 @@ export default function AddBillPage() {
                 className={clsx(
                   "py-2 rounded-xl text-xs font-semibold transition-all border capitalize",
                   frequency === f
-                    ? "bg-primary/10 border-primary/30 text-primary"
-                    : "bg-surface-raised border-border-subtle text-muted hover:border-border"
+                    ? "bg-primary/15 border-primary/30 text-primary"
+                    : "bg-surface-overlay border-border-subtle text-muted hover:border-border"
                 )}
               >
                 {f.replace("_", " ")}
@@ -126,8 +126,8 @@ export default function AddBillPage() {
           className={clsx(
             "w-full flex items-center justify-between p-4 rounded-2xl border transition-all",
             isEMI
-              ? "bg-emi/10 border-emi/30"
-              : "bg-surface-raised border-border-subtle hover:border-border"
+              ? "bg-emi/15 border-emi/30"
+              : "bg-surface-overlay border-border-subtle hover:border-border"
           )}
         >
           <span className="text-sm font-semibold text-foreground">This is an EMI</span>

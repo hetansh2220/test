@@ -126,7 +126,7 @@ export default function ChallengesPage() {
           <div className="space-y-2">
             {completedChallenges.map((ch) => (
               <div key={ch.id} className="card p-4 flex items-center gap-3 opacity-75">
-                <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-success/15 flex items-center justify-center">
                   <HiOutlineTrophy className="w-5 h-5 text-success" />
                 </div>
                 <div className="flex-1">
@@ -160,7 +160,7 @@ export default function ChallengesPage() {
                 <button
                   onClick={() => handleStartChallenge(s)}
                   disabled={addChallenge.isPending}
-                  className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-savings/10 text-savings text-xs font-bold hover:bg-savings/20 transition-colors"
+                  className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-savings/15 text-savings text-xs font-bold hover:bg-savings/20 transition-colors"
                 >
                   <HiOutlinePlus className="w-3.5 h-3.5" />
                   Start

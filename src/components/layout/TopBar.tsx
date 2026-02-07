@@ -24,7 +24,7 @@ export default function TopBar() {
         <div className="flex items-center gap-3">
           <Link
             href={ROUTES.SETTINGS}
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-savings/20 border border-border-subtle lg:hidden"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-primary/25 to-savings/25 border border-border-subtle lg:hidden"
           >
             <span className="text-sm font-bold text-primary-light">{initial}</span>
           </Link>
@@ -35,7 +35,7 @@ export default function TopBar() {
             </p>
           </div>
         </div>
-        <button className="relative flex items-center justify-center w-10 h-10 rounded-full bg-surface-raised border border-border-subtle transition-colors hover:border-border">
+        <button className="relative flex items-center justify-center w-10 h-10 rounded-full bg-surface-overlay border border-border-subtle transition-colors hover:border-border">
           <HiOutlineBell className="w-5 h-5 text-muted" />
         </button>
       </div>

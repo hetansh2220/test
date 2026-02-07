@@ -14,7 +14,7 @@ const COLORS = {
   needs: "#3b82f6",
   wants: "#f59e0b",
   emi: "#8b5cf6",
-  remaining: "#1e2d3d",
+  remaining: "#CBD5E1",
 };
 
 export default function BudgetPage() {

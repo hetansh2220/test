@@ -173,7 +173,7 @@ export default function ChallengeDetailPage() {
                 key={i}
                 className={clsx(
                   "aspect-square rounded-lg flex items-center justify-center text-[9px] font-bold",
-                  ci.completed ? "bg-savings/20 text-savings" : "bg-surface-overlay text-muted"
+                  ci.completed ? "bg-savings/25 text-savings" : "bg-surface-overlay text-muted"
                 )}
                 title={`${ci.date}: ${formatCurrency(ci.amount)}`}
               >

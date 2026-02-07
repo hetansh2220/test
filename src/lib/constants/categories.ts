@@ -13,21 +13,21 @@ export const EXPENSE_CATEGORIES: {
     label: "Needs",
     description: "Rent, groceries, utilities, transport",
     color: "#3b82f6",
-    bgColor: "rgba(59, 130, 246, 0.12)",
+    bgColor: "rgba(59, 130, 246, 0.18)",
   },
   {
     value: "wants",
     label: "Wants",
     description: "Entertainment, dining out, shopping",
     color: "#f59e0b",
-    bgColor: "rgba(245, 158, 11, 0.12)",
+    bgColor: "rgba(245, 158, 11, 0.18)",
   },
   {
     value: "emi",
     label: "EMI",
     description: "Loan & EMI payments",
     color: "#8b5cf6",
-    bgColor: "rgba(139, 92, 246, 0.12)",
+    bgColor: "rgba(139, 92, 246, 0.18)",
   },
 ];
 

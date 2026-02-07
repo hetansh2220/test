@@ -183,7 +183,7 @@ export default function BillsPage() {
 
       {bills.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-16 h-16 rounded-full bg-surface-raised flex items-center justify-center mb-4">
+          <div className="w-16 h-16 rounded-full bg-surface-overlay flex items-center justify-center mb-4">
             <HiOutlineClock className="w-8 h-8 text-muted" />
           </div>
           <p className="text-sm text-muted font-medium">No bills tracked</p>
@@ -211,9 +211,9 @@ export default function BillsPage() {
                       <div key={bill.id} className="card p-4 flex items-center gap-3">
                         <div
                           className={clsx("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", {
-                            "bg-danger/10": isOverdue(bill.dueDate, bill.isPaid),
-                            "bg-warning/10": !bill.isPaid && isDueSoon(bill.dueDate, 7),
-                            "bg-success/10": bill.isPaid,
+                            "bg-danger/15": isOverdue(bill.dueDate, bill.isPaid),
+                            "bg-warning/15": !bill.isPaid && isDueSoon(bill.dueDate, 7),
+                            "bg-success/15": bill.isPaid,
                             "bg-surface-overlay": !bill.isPaid && !isOverdue(bill.dueDate, bill.isPaid) && !isDueSoon(bill.dueDate, 7),
                           })}
                         >
@@ -244,8 +244,8 @@ export default function BillsPage() {
                             className={clsx(
                               "px-3 py-1.5 rounded-xl text-[10px] font-bold transition-all flex items-center gap-1.5",
                               bill.isPaid
-                                ? "bg-success/10 text-success hover:bg-success/20"
-                                : "bg-surface-raised border border-border-subtle text-muted hover:border-success/40 hover:text-success"
+                                ? "bg-success/15 text-success hover:bg-success/20"
+                                : "bg-surface-overlay border border-border-subtle text-muted hover:border-success/40 hover:text-success"
                             )}
                           >
                             <HiOutlineCheckCircle className={clsx("w-3.5 h-3.5", bill.isPaid ? "text-success" : "text-muted")} />
@@ -253,7 +253,7 @@ export default function BillsPage() {
                           </button>
                           <button
                             onClick={() => handleDelete(bill.id, bill.name)}
-                            className="p-1.5 rounded-lg hover:bg-danger/10 transition-all text-danger/40 hover:text-danger/80"
+                            className="p-1.5 rounded-lg hover:bg-danger/10 transition-all text-danger/50 hover:text-danger/80"
                           >
                             <HiOutlineTrash className="w-3.5 h-3.5" />
                           </button>
