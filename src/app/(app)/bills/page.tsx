@@ -158,7 +158,7 @@ export default function BillsPage() {
         <h1 className="text-lg lg:text-xl font-bold font-[family-name:var(--font-display)]">Bills & EMI</h1>
         <Link
           href={ROUTES.ADD_BILL}
-          className="flex items-center gap-1 px-4 py-2 rounded-full bg-[#D1FAE5] text-[#059669] text-xs font-bold hover:bg-[#D1FAE5]/80 transition-colors"
+          className="flex items-center gap-1 px-4 py-2 rounded-full bg-primary/15 text-primary text-xs font-bold hover:bg-primary/25 transition-colors"
         >
           <HiOutlinePlus className="w-4 h-4" />
           Add
@@ -183,13 +183,13 @@ export default function BillsPage() {
 
       {bills.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-16 h-16 rounded-2xl bg-[#FEF3C7] flex items-center justify-center mb-4">
-            <HiOutlineClock className="w-8 h-8 text-[#F59E0B]" />
+          <div className="w-16 h-16 rounded-2xl bg-accent/15 flex items-center justify-center mb-4">
+            <HiOutlineClock className="w-8 h-8 text-accent" />
           </div>
           <p className="text-sm text-muted font-medium">No bills tracked</p>
           <Link
             href={ROUTES.ADD_BILL}
-            className="mt-4 px-5 py-2.5 rounded-2xl bg-[#059669] text-white text-sm font-semibold shadow-md shadow-[#059669]/20 hover:bg-[#047857] transition-all"
+            className="mt-4 px-5 py-2.5 rounded-2xl bg-primary text-white text-sm font-semibold shadow-md shadow-primary/20 hover:bg-primary-dark transition-all"
           >
             Add your first bill
           </Link>

@@ -54,7 +54,7 @@ export default function TransactionsPage() {
       <div className="flex items-center justify-between mb-6">
         <button
           onClick={() => setMonth(getPreviousMonth(month))}
-          className="w-11 h-11 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center hover:shadow-md transition-all"
+          className="w-11 h-11 rounded-2xl bg-surface-raised border border-border flex items-center justify-center hover:border-primary/30 transition-all"
         >
           <HiOutlineChevronLeft className="w-5 h-5 text-muted" />
         </button>
@@ -64,7 +64,7 @@ export default function TransactionsPage() {
         <button
           onClick={() => setMonth(getNextMonth(month))}
           disabled={month >= getCurrentMonth()}
-          className="w-11 h-11 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center hover:shadow-md transition-all disabled:opacity-30"
+          className="w-11 h-11 rounded-2xl bg-surface-raised border border-border flex items-center justify-center hover:border-primary/30 transition-all disabled:opacity-30"
         >
           <HiOutlineChevronRight className="w-5 h-5 text-muted" />
         </button>
@@ -96,13 +96,13 @@ export default function TransactionsPage() {
         </div>
       ) : grouped.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-16 h-16 rounded-2xl bg-[#D1FAE5] flex items-center justify-center mb-4">
-            <HiOutlineBanknotes className="w-8 h-8 text-[#059669]" />
+          <div className="w-16 h-16 rounded-2xl bg-primary/15 flex items-center justify-center mb-4">
+            <HiOutlineBanknotes className="w-8 h-8 text-primary" />
           </div>
           <p className="text-sm text-muted font-medium">No transactions yet</p>
           <Link
             href={ROUTES.ADD_TRANSACTION}
-            className="mt-4 px-5 py-2.5 rounded-2xl bg-[#059669] text-white text-sm font-semibold shadow-md shadow-[#059669]/20 hover:bg-[#047857] transition-all"
+            className="mt-4 px-5 py-2.5 rounded-2xl bg-primary text-white text-sm font-semibold shadow-md shadow-primary/20 hover:bg-primary-dark transition-all"
           >
             Add your first transaction
           </Link>
@@ -125,9 +125,9 @@ export default function TransactionsPage() {
                       className="card p-5 flex items-center gap-4 group"
                     >
                       <div className={clsx("w-12 h-12 rounded-2xl flex items-center justify-center shrink-0", {
-                        "bg-[#D1FAE5]": t.type === "income",
-                        "bg-[#FEE2E2]": t.type === "expense",
-                        "bg-[#DBEAFE]": t.type === "savings",
+                        "bg-primary/15": t.type === "income",
+                        "bg-danger/15": t.type === "expense",
+                        "bg-savings/15": t.type === "savings",
                       })}>
                         <Icon className={clsx("w-6 h-6", cfg.color)} />
                       </div>

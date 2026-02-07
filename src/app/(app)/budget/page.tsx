@@ -4,22 +4,34 @@ import { useState, useMemo } from "react";
 import { useBudget, useSetBudget } from "@/hooks/useBudget";
 import { useTransactions } from "@/hooks/useTransactions";
 import { useAuth } from "@/providers/AuthProvider";
+import { useTheme } from "@/providers/ThemeProvider";
 import { useToast } from "@/providers/ToastProvider";
 import { getCurrentMonth, getMonthLabel } from "@/lib/utils/dateHelpers";
 import { formatCurrency } from "@/lib/utils/formatCurrency";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import clsx from "clsx";
 
-const COLORS = {
-  needs: "#3b82f6",
-  wants: "#f59e0b",
-  emi: "#8b5cf6",
-  remaining: "#CBD5E1",
+const COLORS_DARK = {
+  needs: "#8B5CF6",
+  wants: "#F59E0B",
+  emi: "#D946EF",
+  remaining: "#2A3254",
+  danger: "#EF4444",
+};
+
+const COLORS_LIGHT = {
+  needs: "#7C3AED",
+  wants: "#D97706",
+  emi: "#C026D3",
+  remaining: "#E5E7EB",
+  danger: "#DC2626",
 };
 
 export default function BudgetPage() {
   const { profile } = useAuth();
+  const { theme } = useTheme();
   const { showToast } = useToast();
+  const COLORS = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
   const month = getCurrentMonth();
   const { data: budget, isLoading } = useBudget(month);
   const { data: transactions = [] } = useTransactions(month);
@@ -106,7 +118,7 @@ export default function BudgetPage() {
           <button
             type="submit"
             disabled={setBudgetMutation.isPending || !budgetLimit}
-            className="w-full h-14 rounded-2xl bg-[#059669] text-white font-semibold text-base shadow-lg shadow-[#059669]/25 hover:bg-[#047857] transition-all disabled:opacity-50"
+            className="w-full h-14 rounded-2xl bg-primary text-white font-semibold text-base shadow-lg shadow-primary/25 hover:bg-primary-dark transition-all disabled:opacity-50"
           >
             {setBudgetMutation.isPending ? "Setting..." : "Set Budget"}
           </button>
@@ -139,7 +151,7 @@ export default function BudgetPage() {
             setSavingGoal(String(budget.savingGoal || ""));
             setShowSetup(true);
           }}
-          className="text-xs text-[#059669] font-semibold px-3 py-1.5 rounded-full bg-[#D1FAE5] hover:bg-[#D1FAE5]/80 transition-colors"
+          className="text-xs text-primary font-semibold px-3 py-1.5 rounded-full bg-primary/15 hover:bg-primary/25 transition-colors"
         >
           Edit
         </button>
@@ -193,7 +205,7 @@ export default function BudgetPage() {
                     <div className="w-full h-1.5 rounded-full bg-surface-overlay overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all duration-500"
-                        style={{ width: `${pct}%`, backgroundColor: pct > 90 ? "#ef4444" : item.color }}
+                        style={{ width: `${pct}%`, backgroundColor: pct > 90 ? COLORS.danger : item.color }}
                       />
                     </div>
                   </div>

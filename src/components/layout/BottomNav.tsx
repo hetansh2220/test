@@ -41,10 +41,9 @@ export default function BottomNav() {
 
   return (
     <>
-      {/* More menu overlay */}
       {showMore && (
         <div className="fixed inset-0 z-40" onClick={() => setShowMore(false)}>
-          <div className="absolute bottom-20 left-4 right-4 glass-strong rounded-2xl p-2 animate-scale-in origin-bottom-right shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
+          <div className="absolute bottom-20 left-4 right-4 bg-surface-raised border border-border-subtle rounded-2xl p-2 animate-scale-in origin-bottom-right shadow-xl">
             {moreItems.map((item) => (
               <button
                 key={item.href}
@@ -53,9 +52,9 @@ export default function BottomNav() {
                   setShowMore(false);
                 }}
                 className={clsx(
-                  "w-full text-left px-4 py-3.5 rounded-2xl text-sm font-medium transition-colors",
+                  "w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-colors",
                   pathname.startsWith(item.href)
-                    ? "text-[#059669] bg-[#D1FAE5]"
+                    ? "text-primary bg-primary/10"
                     : "text-foreground/70 hover:bg-surface-overlay hover:text-foreground"
                 )}
               >
@@ -66,8 +65,7 @@ export default function BottomNav() {
         </div>
       )}
 
-      {/* Bottom nav bar — hidden on desktop */}
-      <nav className="fixed bottom-0 left-0 right-0 z-50 glass-strong pb-safe lg:hidden shadow-[0_-2px_12px_rgba(0,0,0,0.06)]">
+      <nav className="fixed bottom-0 left-0 right-0 z-50 glass-strong pb-safe lg:hidden">
         <div className="flex items-center justify-around px-2 h-16 max-w-lg mx-auto">
           {mainTabs.map((tab) => {
             if (tab.isFab) {
@@ -75,10 +73,9 @@ export default function BottomNav() {
                 <Link
                   key="fab"
                   href={tab.href}
-                  className="relative -mt-6 flex items-center justify-center w-14 h-14 rounded-2xl bg-[#059669] shadow-lg shadow-[#059669]/25 hover:bg-[#047857] active:scale-95 transition-all"
+                  className="relative -mt-5 flex items-center justify-center w-13 h-13 rounded-2xl bg-primary shadow-lg shadow-primary/25 hover:bg-primary-dark active:scale-95 transition-all"
                 >
-                  <HiOutlinePlus className="w-7 h-7 text-white" strokeWidth={2.5} />
-                  <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 hover:opacity-100 transition-opacity" />
+                  <HiOutlinePlus className="w-6 h-6 text-white" strokeWidth={2.5} />
                 </Link>
               );
             }
@@ -101,8 +98,8 @@ export default function BottomNav() {
                   active ? "text-primary" : "text-muted"
                 )}
               >
-                <tab.icon className="w-6 h-6" />
-                <span className="text-[11px] font-semibold tracking-wide">{tab.label}</span>
+                <tab.icon className="w-5 h-5" />
+                <span className="text-[10px] font-semibold tracking-wide">{tab.label}</span>
                 {active && (
                   <div className="absolute bottom-1 w-4 h-0.5 rounded-full bg-primary" />
                 )}

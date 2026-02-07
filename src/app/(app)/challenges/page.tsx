@@ -74,7 +74,7 @@ export default function ChallengesPage() {
       {/* Active challenges */}
       {activeChallenges.length > 0 && (
         <div>
-          <h2 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#DBEAFE] text-[#3B82F6] text-[11px] font-bold mb-3">Active</h2>
+          <h2 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-needs/15 text-needs text-[11px] font-bold mb-3">Active</h2>
           <div className="space-y-3 lg:grid lg:grid-cols-2 lg:gap-4 lg:space-y-0">
             {activeChallenges.map((ch) => {
               const progress = ch.targetAmount > 0 ? Math.min(100, (ch.savedAmount / ch.targetAmount) * 100) : 0;
@@ -120,13 +120,13 @@ export default function ChallengesPage() {
       {/* Completed */}
       {completedChallenges.length > 0 && (
         <div>
-          <h2 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#D1FAE5] text-[#059669] text-[11px] font-bold mb-3">
+          <h2 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/15 text-primary text-[11px] font-bold mb-3">
             Completed ({completedChallenges.length})
           </h2>
           <div className="space-y-2">
             {completedChallenges.map((ch) => (
               <div key={ch.id} className="card p-5 flex items-center gap-4 opacity-75">
-                <div className="w-12 h-12 rounded-2xl bg-[#D1FAE5] flex items-center justify-center">
+                <div className="w-12 h-12 rounded-2xl bg-primary/15 flex items-center justify-center">
                   <HiOutlineTrophy className="w-5 h-5 text-success" />
                 </div>
                 <div className="flex-1">
@@ -142,8 +142,8 @@ export default function ChallengesPage() {
       {/* Suggestions */}
       <div>
         <div className="flex items-center gap-2 mb-3">
-          <HiOutlineSparkles className="w-4 h-4 text-[#B45309]" />
-          <h2 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FEF3C7] text-[#B45309] text-[11px] font-bold">Suggested For You</h2>
+          <HiOutlineSparkles className="w-4 h-4 text-accent" />
+          <h2 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/15 text-accent text-[11px] font-bold">Suggested For You</h2>
         </div>
         <div className="space-y-3 lg:grid lg:grid-cols-2 lg:gap-4 lg:space-y-0">
           {suggestions.map((s, i) => (
@@ -160,7 +160,7 @@ export default function ChallengesPage() {
                 <button
                   onClick={() => handleStartChallenge(s)}
                   disabled={addChallenge.isPending}
-                  className="flex items-center gap-1 px-4 py-2 rounded-full bg-[#D1FAE5] text-[#059669] text-xs font-bold shadow-sm hover:shadow-md transition-all"
+                  className="flex items-center gap-1 px-4 py-2 rounded-full bg-primary/15 text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all"
                 >
                   <HiOutlinePlus className="w-3.5 h-3.5" />
                   Start

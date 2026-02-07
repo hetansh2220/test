@@ -51,7 +51,7 @@ export default function AddBillPage() {
       <div className="flex items-center gap-3 mb-8">
         <button
           onClick={() => router.back()}
-          className="w-11 h-11 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center hover:shadow-md transition-all"
+          className="w-11 h-11 rounded-2xl bg-surface-raised border border-border shadow-sm flex items-center justify-center hover:shadow-md transition-all"
         >
           <HiOutlineArrowLeft className="w-5 h-5 text-muted" />
         </button>
@@ -109,7 +109,7 @@ export default function AddBillPage() {
                 className={clsx(
                   "py-2.5 rounded-2xl text-xs font-semibold transition-all border capitalize",
                   frequency === f
-                    ? "bg-[#D1FAE5] border-[#059669]/30 text-[#059669]"
+                    ? "bg-primary/15 border-primary/30 text-primary"
                     : "bg-surface-overlay border-border-subtle text-muted hover:border-border"
                 )}
               >
@@ -164,7 +164,7 @@ export default function AddBillPage() {
         <button
           type="submit"
           disabled={addMutation.isPending || !name || !amount || !dueDate}
-          className="w-full h-14 rounded-2xl bg-[#059669] text-white font-semibold text-base shadow-lg shadow-[#059669]/25 hover:bg-[#047857] transition-all disabled:opacity-50"
+          className="w-full h-14 rounded-2xl bg-primary text-white font-semibold text-base shadow-lg shadow-primary/25 hover:bg-primary-dark transition-all disabled:opacity-50"
         >
           {addMutation.isPending ? "Adding..." : "Add Bill"}
         </button>

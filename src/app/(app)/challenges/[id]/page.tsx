@@ -92,7 +92,7 @@ export default function ChallengeDetailPage() {
     <div className="py-6 animate-fade-in lg:max-w-2xl">
       <button
         onClick={() => router.back()}
-        className="w-11 h-11 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center hover:shadow-md transition-all mb-6"
+        className="w-11 h-11 rounded-2xl bg-surface-raised border border-border shadow-sm flex items-center justify-center hover:shadow-md transition-all mb-6"
       >
         <HiOutlineArrowLeft className="w-5 h-5 text-muted" />
       </button>
@@ -123,12 +123,12 @@ export default function ChallengeDetailPage() {
             <p className="text-sm font-bold text-savings font-[family-name:var(--font-mono)]">{formatCurrency(challenge.savedAmount)}</p>
             <p className="text-xs text-muted">Saved</p>
           </div>
-          <div className="w-px h-8 bg-border-subtle" />
+          <div className="w-px h-8 bg-border" />
           <div className="text-center">
             <p className="text-sm font-bold text-foreground font-[family-name:var(--font-mono)]">{formatCurrency(challenge.targetAmount)}</p>
             <p className="text-xs text-muted">Target</p>
           </div>
-          <div className="w-px h-8 bg-border-subtle" />
+          <div className="w-px h-8 bg-border" />
           <div className="text-center">
             <p className="text-sm font-bold text-foreground">{challenge.checkIns.length}</p>
             <p className="text-xs text-muted">Check-ins</p>

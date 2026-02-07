@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/providers/AuthProvider";
+import { useTheme } from "@/providers/ThemeProvider";
 import { ROUTES } from "@/lib/constants/routes";
 import {
   HiOutlineSquares2X2,
@@ -14,6 +15,8 @@ import {
   HiOutlineSparkles,
   HiOutlineAcademicCap,
   HiOutlineCog6Tooth,
+  HiOutlineSun,
+  HiOutlineMoon,
 } from "react-icons/hi2";
 import clsx from "clsx";
 
@@ -30,6 +33,7 @@ const navItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const { profile, user } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const name = profile?.displayName || user?.displayName || "User";
   const initial = name.charAt(0).toUpperCase();
 
@@ -39,22 +43,22 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 bg-surface border-r border-border-subtle shadow-[1px_0_8px_rgba(0,0,0,0.04)] z-40">
+    <aside className="hidden lg:flex flex-col w-72 h-screen fixed left-0 top-0 bg-surface border-r border-border-subtle z-40 transition-colors duration-300">
       {/* Brand */}
-      <div className="px-6 py-7 border-b border-border-subtle">
+      <div className="px-7 py-6 border-b border-border-subtle">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[#059669] shadow-md shadow-[#059669]/20 flex items-center justify-center">
-            <span className="text-lg font-extrabold text-white font-[family-name:var(--font-display)]">F</span>
+          <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-md shadow-primary/20">
+            <span className="text-lg font-extrabold text-white">F</span>
           </div>
           <div>
-            <h1 className="text-base font-bold font-[family-name:var(--font-display)] text-foreground">FinWell</h1>
-            <p className="text-[11px] text-muted">Financial Wellbeing</p>
+            <h1 className="text-base font-bold text-foreground">FinWell</h1>
+            <p className="text-[11px] text-muted font-medium">Financial Wellbeing</p>
           </div>
         </div>
       </div>
 
       {/* Nav items */}
-      <nav className="flex-1 px-4 py-5 space-y-1.5 overflow-y-auto">
+      <nav className="flex-1 px-4 py-5 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const active = isActive(item.href);
           return (
@@ -62,42 +66,53 @@ export default function Sidebar() {
               key={item.href}
               href={item.href}
               className={clsx(
-                "flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all",
+                "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
                 active
-                  ? "bg-[#D1FAE5] text-[#059669] font-semibold"
+                  ? "bg-primary/10 text-primary font-semibold"
                   : "text-muted hover:bg-surface-overlay hover:text-foreground"
               )}
             >
-              <item.icon className={clsx("w-5 h-5", active ? "text-[#059669]" : "text-muted")} />
+              <item.icon className={clsx("w-5 h-5", active ? "text-primary" : "text-muted")} />
               {item.label}
-              {active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-[#059669]" />}
+              {active && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-primary" />}
             </Link>
           );
         })}
 
-        {/* Add transaction button */}
         <Link
           href={ROUTES.ADD_TRANSACTION}
-          className="flex items-center gap-3 px-4 py-3.5 mt-4 rounded-2xl bg-[#059669] text-white text-sm font-semibold shadow-md shadow-[#059669]/20 hover:bg-[#047857] transition-all"
+          className="flex items-center gap-3 px-4 py-3 mt-4 rounded-xl bg-primary text-white text-sm font-semibold shadow-md shadow-primary/20 hover:bg-primary-dark transition-all"
         >
           <HiOutlinePlus className="w-5 h-5" />
           Add Transaction
         </Link>
       </nav>
 
-      {/* User section */}
-      <div className="px-3 py-4 border-t border-border-subtle">
+      {/* Bottom section */}
+      <div className="px-4 py-4 border-t border-border-subtle space-y-2">
+        <button
+          onClick={toggleTheme}
+          className="flex items-center gap-3 px-4 py-3 w-full rounded-xl text-sm font-medium text-muted hover:bg-surface-overlay hover:text-foreground transition-all"
+        >
+          {theme === "dark" ? (
+            <HiOutlineSun className="w-5 h-5 text-accent" />
+          ) : (
+            <HiOutlineMoon className="w-5 h-5 text-muted" />
+          )}
+          {theme === "dark" ? "Light Mode" : "Dark Mode"}
+        </button>
+
         <Link
           href={ROUTES.SETTINGS}
           className={clsx(
-            "flex items-center gap-3 px-4 py-3.5 rounded-2xl text-sm font-medium transition-all",
+            "flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all",
             pathname === ROUTES.SETTINGS
-              ? "bg-[#D1FAE5] text-[#059669]"
+              ? "bg-primary/10 text-primary"
               : "text-muted hover:bg-surface-overlay hover:text-foreground"
           )}
         >
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#D1FAE5] to-[#A7F3D0] border border-[#E2E8F0] flex items-center justify-center">
-            <span className="text-xs font-bold text-[#059669]">{initial}</span>
+          <div className="w-9 h-9 rounded-full bg-primary/10 border border-border-subtle flex items-center justify-center">
+            <span className="text-xs font-bold text-primary">{initial}</span>
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold text-foreground truncate">{name}</p>

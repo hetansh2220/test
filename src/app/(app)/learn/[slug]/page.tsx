@@ -61,7 +61,7 @@ export default function ArticlePage() {
     <div className="py-6 animate-fade-in lg:max-w-3xl">
       <button
         onClick={() => router.back()}
-        className="w-11 h-11 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center hover:shadow-md transition-all mb-6"
+        className="w-11 h-11 rounded-2xl bg-surface-raised border border-border shadow-sm flex items-center justify-center hover:shadow-md transition-all mb-6"
       >
         <HiOutlineArrowLeft className="w-5 h-5 text-muted" />
       </button>

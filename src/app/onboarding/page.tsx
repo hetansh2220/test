@@ -53,16 +53,17 @@ export default function OnboardingPage() {
 
   if (loading || !user) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-5 py-12">
+    <div className="min-h-screen flex flex-col items-center justify-center px-5 py-12 bg-background">
       {/* Decorative */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-100 h-100 rounded-full bg-savings/5 blur-3xl pointer-events-none" />
 
       <div className="w-full max-w-sm lg:max-w-md animate-fade-in">
         {/* Progress dots */}
@@ -72,7 +73,11 @@ export default function OnboardingPage() {
               key={i}
               className={clsx(
                 "h-1.5 rounded-full transition-all duration-300",
-                i === step ? "w-8 bg-primary" : i < step ? "w-4 bg-primary/40" : "w-4 bg-border"
+                i === step
+                  ? "w-8 bg-primary shadow-[0_0_8px_rgba(0,208,156,0.5)]"
+                  : i < step
+                    ? "w-4 bg-primary/40"
+                    : "w-4 bg-border"
               )}
             />
           ))}
@@ -81,7 +86,7 @@ export default function OnboardingPage() {
         {/* Step 0: Profession */}
         {step === 0 && (
           <div className="animate-scale-in">
-            <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center mb-2">What do you do?</h2>
+            <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center text-foreground mb-2">What do you do?</h2>
             <p className="text-sm text-muted text-center mb-8">This helps us personalize your experience</p>
 
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
@@ -90,14 +95,17 @@ export default function OnboardingPage() {
                   key={p.value}
                   onClick={() => setProfession(p.value)}
                   className={clsx(
-                    "flex flex-col items-center gap-2 p-5 rounded-2xl border transition-all",
+                    "relative flex flex-col items-center gap-2 p-5 rounded-2xl border transition-all",
                     profession === p.value
                       ? "border-primary bg-primary/10 shadow-lg shadow-primary/10"
-                      : "border-border-subtle bg-surface-raised hover:border-border"
+                      : "border-border-subtle bg-surface-raised hover:border-border hover:bg-surface-overlay"
                   )}
                 >
-                  <span className="text-3xl">{p.icon}</span>
-                  <span className="text-xs font-semibold text-foreground">{p.label}</span>
+                  {profession === p.value && (
+                    <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-primary/5 to-savings/5 pointer-events-none" />
+                  )}
+                  <span className="text-3xl relative">{p.icon}</span>
+                  <span className="text-xs font-semibold text-foreground relative">{p.label}</span>
                 </button>
               ))}
             </div>
@@ -115,23 +123,26 @@ export default function OnboardingPage() {
         {/* Step 1: Income Type */}
         {step === 1 && (
           <div className="animate-scale-in">
-            <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center mb-2">Income type</h2>
+            <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center text-foreground mb-2">Income type</h2>
             <p className="text-sm text-muted text-center mb-8">How do you earn your income?</p>
 
             <div className="flex flex-col gap-3">
               <button
                 onClick={() => setIncomeType("fixed")}
                 className={clsx(
-                  "flex items-start gap-4 p-5 rounded-2xl border transition-all text-left",
+                  "relative flex items-start gap-4 p-5 rounded-2xl border transition-all text-left",
                   incomeType === "fixed"
                     ? "border-primary bg-primary/10 shadow-lg shadow-primary/10"
-                    : "border-border-subtle bg-surface-raised hover:border-border"
+                    : "border-border-subtle bg-surface-raised hover:border-border hover:bg-surface-overlay"
                 )}
               >
-                <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center shrink-0 mt-0.5">
+                {incomeType === "fixed" && (
+                  <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-primary/5 to-savings/5 pointer-events-none" />
+                )}
+                <div className="w-10 h-10 rounded-xl bg-success/10 flex items-center justify-center shrink-0 mt-0.5 relative">
                   <span className="text-lg">📅</span>
                 </div>
-                <div>
+                <div className="relative">
                   <p className="font-semibold text-sm text-foreground">Fixed Income</p>
                   <p className="text-xs text-muted mt-0.5">Regular monthly salary or pension</p>
                 </div>
@@ -139,16 +150,19 @@ export default function OnboardingPage() {
               <button
                 onClick={() => setIncomeType("variable")}
                 className={clsx(
-                  "flex items-start gap-4 p-5 rounded-2xl border transition-all text-left",
+                  "relative flex items-start gap-4 p-5 rounded-2xl border transition-all text-left",
                   incomeType === "variable"
                     ? "border-primary bg-primary/10 shadow-lg shadow-primary/10"
-                    : "border-border-subtle bg-surface-raised hover:border-border"
+                    : "border-border-subtle bg-surface-raised hover:border-border hover:bg-surface-overlay"
                 )}
               >
-                <div className="w-10 h-10 rounded-xl bg-warning/10 flex items-center justify-center shrink-0 mt-0.5">
+                {incomeType === "variable" && (
+                  <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-primary/5 to-savings/5 pointer-events-none" />
+                )}
+                <div className="w-10 h-10 rounded-xl bg-warning/10 flex items-center justify-center shrink-0 mt-0.5 relative">
                   <span className="text-lg">📈</span>
                 </div>
-                <div>
+                <div className="relative">
                   <p className="font-semibold text-sm text-foreground">Variable Income</p>
                   <p className="text-xs text-muted mt-0.5">Freelance, business, or irregular earnings</p>
                 </div>
@@ -176,7 +190,7 @@ export default function OnboardingPage() {
         {/* Step 2: Monthly Income */}
         {step === 2 && (
           <div className="animate-scale-in">
-            <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center mb-2">Monthly income</h2>
+            <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center text-foreground mb-2">Monthly income</h2>
             <p className="text-sm text-muted text-center mb-8">
               {incomeType === "variable" ? "Enter your average monthly income" : "Enter your monthly salary"}
             </p>
@@ -240,7 +254,7 @@ export default function OnboardingPage() {
         {/* Step 3: Salary Date (fixed income only) */}
         {step === 3 && incomeType === "fixed" && (
           <div className="animate-scale-in">
-            <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center mb-2">Salary date</h2>
+            <h2 className="text-2xl font-bold font-[family-name:var(--font-display)] text-center text-foreground mb-2">Salary date</h2>
             <p className="text-sm text-muted text-center mb-8">
               Which day of the month do you receive your salary?
             </p>
@@ -254,7 +268,7 @@ export default function OnboardingPage() {
                     "h-11 rounded-xl text-sm font-bold transition-all",
                     Number(salaryDate) === day
                       ? "bg-primary text-white shadow-lg shadow-primary/25"
-                      : "bg-surface-raised border border-border-subtle text-muted hover:text-foreground hover:border-border"
+                      : "bg-surface-raised border border-border-subtle text-muted hover:text-foreground hover:border-border hover:bg-surface-overlay"
                   )}
                 >
                   {day}

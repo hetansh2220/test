@@ -68,10 +68,10 @@ export default function DashboardPage() {
 
       {/* ─── Current Balance ────────────────── */}
       <div className="card card-glow p-6 lg:p-7 lg:col-span-3 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-40 h-40 bg-primary/8 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-40 h-40 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
         <h3 className="text-[11px] font-semibold text-muted uppercase tracking-wider mb-1">Current Balance</h3>
         <p className={clsx(
-          "text-3xl lg:text-4xl font-extrabold font-[family-name:var(--font-display)]",
+          "text-3xl lg:text-4xl font-extrabold font-display",
           totals.income - totals.expenses - totals.savings >= 0 ? "text-foreground" : "text-danger"
         )}>
           {formatCurrency(totals.income - totals.expenses - totals.savings)}
@@ -88,21 +88,21 @@ export default function DashboardPage() {
         <div className="grid grid-cols-3 gap-4">
           <div className="flex flex-col items-center p-4 lg:p-5 rounded-2xl bg-success/10 border border-success/20">
             <HiOutlineArrowTrendingUp className="w-6 h-6 lg:w-7 lg:h-7 text-success mb-1" />
-            <p className="text-lg lg:text-2xl font-bold text-success font-[family-name:var(--font-display)]">
+            <p className="text-lg lg:text-2xl font-bold text-success font-display">
               {formatCurrency(totals.income)}
             </p>
             <p className="text-xs text-muted font-medium mt-0.5">Income</p>
           </div>
           <div className="flex flex-col items-center p-4 lg:p-5 rounded-2xl bg-danger/10 border border-danger/20">
             <HiOutlineArrowTrendingDown className="w-6 h-6 lg:w-7 lg:h-7 text-danger mb-1" />
-            <p className="text-lg lg:text-2xl font-bold text-danger font-[family-name:var(--font-display)]">
+            <p className="text-lg lg:text-2xl font-bold text-danger font-display">
               {formatCurrency(totals.expenses)}
             </p>
             <p className="text-xs text-muted font-medium mt-0.5">Expenses</p>
           </div>
           <div className="flex flex-col items-center p-4 lg:p-5 rounded-2xl bg-savings/10 border border-savings/20">
             <HiOutlineBanknotes className="w-6 h-6 lg:w-7 lg:h-7 text-savings mb-1" />
-            <p className="text-lg lg:text-2xl font-bold text-savings font-[family-name:var(--font-display)]">
+            <p className="text-lg lg:text-2xl font-bold text-savings font-display">
               {formatCurrency(totals.savings)}
             </p>
             <p className="text-xs text-muted font-medium mt-0.5">Savings</p>
@@ -131,7 +131,7 @@ export default function DashboardPage() {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-2xl font-extrabold font-[family-name:var(--font-display)]" style={{ color: health.color }}>
+              <span className="text-2xl font-extrabold font-display" style={{ color: health.color }}>
                 {health.score}
               </span>
               <span className="text-xs font-semibold text-muted">/ 100</span>
@@ -148,7 +148,7 @@ export default function DashboardPage() {
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-2">
                 <span className="text-[10px] text-muted w-10">{item.label}</span>
-                <div className="flex-1 h-1 rounded-full bg-surface-overlay overflow-hidden">
+                <div className="flex-1 h-1 rounded-full bg-border-subtle overflow-hidden">
                   <div className="h-full rounded-full bg-primary/70 transition-all duration-500" style={{ width: `${item.value}%` }} />
                 </div>
                 <span className="text-[10px] text-muted w-6 text-right">{item.value}%</span>
@@ -163,13 +163,13 @@ export default function DashboardPage() {
           {budget ? (
             <>
               <div className="flex-1 flex flex-col justify-center">
-                <p className="text-2xl font-extrabold font-[family-name:var(--font-display)]">
+                <p className="text-2xl font-extrabold font-display">
                   {Math.round(budgetUsage)}
                   <span className="text-sm text-muted">%</span>
                 </p>
                 <p className="text-xs text-muted mt-0.5">of {formatCurrency(budget.monthlyLimit)}</p>
               </div>
-              <div className="w-full h-2 rounded-full bg-surface-overlay mt-3 overflow-hidden">
+              <div className="w-full h-2 rounded-full bg-border-subtle mt-3 overflow-hidden">
                 <div
                   className={clsx("h-full rounded-full transition-all duration-700", {
                     "bg-success": budgetUsage < 60,
@@ -196,19 +196,19 @@ export default function DashboardPage() {
         </div>
         <div className="flex flex-wrap gap-2">
           {overdueBills.length > 0 && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-danger/15 border border-danger/25">
+            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-danger/10 border border-danger/25">
               <div className="w-2 h-2 rounded-full bg-danger animate-pulse" />
               <span className="text-xs font-semibold text-danger">{overdueBills.length} overdue</span>
             </div>
           )}
           {dueSoonBills.length > 0 && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-warning/15 border border-warning/25">
+            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-warning/10 border border-warning/25">
               <div className="w-2 h-2 rounded-full bg-warning" />
               <span className="text-xs font-semibold text-warning">{dueSoonBills.length} due soon</span>
             </div>
           )}
           {overdueBills.length === 0 && dueSoonBills.length === 0 && (
-            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-success/15 border border-success/25">
+            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-success/10 border border-success/25">
               <HiOutlineCheckCircle className="w-4 h-4 text-success" />
               <span className="text-xs font-semibold text-success">All clear</span>
             </div>

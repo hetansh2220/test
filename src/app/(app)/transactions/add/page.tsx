@@ -59,7 +59,7 @@ export default function AddTransactionPage() {
       <div className="flex items-center gap-3 mb-8">
         <button
           onClick={() => router.back()}
-          className="w-11 h-11 rounded-2xl bg-white border border-[#E2E8F0] shadow-sm flex items-center justify-center hover:shadow-md transition-all"
+          className="w-11 h-11 rounded-2xl bg-surface-raised border border-border flex items-center justify-center hover:border-primary/30 transition-all"
         >
           <HiOutlineArrowLeft className="w-5 h-5 text-muted" />
         </button>
@@ -78,7 +78,7 @@ export default function AddTransactionPage() {
                 "py-3 rounded-2xl font-semibold text-sm transition-all border",
                 type === t.value
                   ? `bg-gradient-to-b ${t.gradient} border-transparent ${t.color} shadow-sm`
-                  : "bg-surface-overlay border-border-subtle text-muted hover:border-border"
+                  : "bg-surface-overlay border-border text-muted hover:border-primary/30"
               )}
             >
               {t.label}
@@ -116,7 +116,7 @@ export default function AddTransactionPage() {
                     "flex flex-col items-center gap-1 py-3 px-2 rounded-2xl border transition-all",
                     category === cat.value
                       ? "border-transparent shadow-sm"
-                      : "border-border-subtle bg-surface-raised hover:border-border"
+                      : "border-border bg-surface-raised hover:border-primary/30"
                   )}
                   style={category === cat.value ? { backgroundColor: cat.bgColor, borderColor: cat.color + "30" } : {}}
                 >

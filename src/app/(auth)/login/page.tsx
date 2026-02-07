@@ -45,8 +45,9 @@ export default function LoginPage() {
       {/* Branding */}
       <div className="mb-10 text-center">
         <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-savings opacity-20 blur-lg" />
-          <div className="relative w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-savings flex items-center justify-center">
+          <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-primary to-savings opacity-20 blur-lg" />
+          <div className="absolute -inset-1 rounded-2xl bg-linear-to-br from-primary/20 to-savings/20 blur-xl animate-pulse-glow" />
+          <div className="relative w-16 h-16 rounded-2xl bg-linear-to-br from-primary to-savings flex items-center justify-center shadow-lg shadow-primary/25">
             <span className="text-2xl font-extrabold text-white font-[family-name:var(--font-display)]">F</span>
           </div>
         </div>

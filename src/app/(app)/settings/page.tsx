@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/providers/AuthProvider";
+import { useTheme } from "@/providers/ThemeProvider";
 import { signOut } from "@/lib/firebase/auth";
 import { updateUserProfile } from "@/lib/firebase/firestore";
 import { useToast } from "@/providers/ToastProvider";
@@ -19,10 +20,13 @@ import {
   HiOutlineCalendarDays,
   HiOutlineXMark,
   HiOutlineCheck,
+  HiOutlineSun,
+  HiOutlineMoon,
 } from "react-icons/hi2";
 
 export default function SettingsPage() {
   const { profile, user, refreshProfile } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const { showToast } = useToast();
   const router = useRouter();
 
@@ -80,8 +84,8 @@ export default function SettingsPage() {
 
       {/* Profile card */}
       <div className="card card-glow p-7 lg:p-8 flex flex-col items-center mb-6 lg:flex-row lg:gap-6 lg:items-center">
-        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#D1FAE5] to-[#A7F3D0] border-2 border-[#E2E8F0] shadow-md flex items-center justify-center mb-3">
-          <span className="text-2xl font-bold text-[#059669] font-[family-name:var(--font-display)]">{initial}</span>
+        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-savings/20 border-2 border-border shadow-md flex items-center justify-center mb-3">
+          <span className="text-2xl font-bold text-primary font-[family-name:var(--font-display)]">{initial}</span>
         </div>
         <h2 className="text-lg font-bold text-foreground font-[family-name:var(--font-display)]">
           {profile?.displayName || user?.displayName || "User"}
@@ -92,8 +96,8 @@ export default function SettingsPage() {
       {/* Info rows */}
       <div className="card divide-y divide-border-subtle">
         <div className="flex items-center gap-4 p-5">
-          <div className="w-12 h-12 rounded-2xl bg-[#DBEAFE] flex items-center justify-center">
-            <HiOutlineEnvelope className="w-5 h-5 text-[#3B82F6]" />
+          <div className="w-12 h-12 rounded-2xl bg-needs/15 flex items-center justify-center">
+            <HiOutlineEnvelope className="w-5 h-5 text-needs" />
           </div>
           <div className="flex-1">
             <p className="text-[11px] text-muted uppercase font-semibold tracking-wider">Email</p>
@@ -101,8 +105,8 @@ export default function SettingsPage() {
           </div>
         </div>
         <div className="flex items-center gap-4 p-5">
-          <div className="w-12 h-12 rounded-2xl bg-[#FEF3C7] flex items-center justify-center">
-            <HiOutlineBriefcase className="w-5 h-5 text-[#F59E0B]" />
+          <div className="w-12 h-12 rounded-2xl bg-accent/15 flex items-center justify-center">
+            <HiOutlineBriefcase className="w-5 h-5 text-accent" />
           </div>
           <div className="flex-1">
             <p className="text-[11px] text-muted uppercase font-semibold tracking-wider">Profession</p>
@@ -112,8 +116,8 @@ export default function SettingsPage() {
 
         {/* Monthly Income — editable */}
         <div className="flex items-center gap-4 p-5">
-          <div className="w-12 h-12 rounded-2xl bg-[#D1FAE5] flex items-center justify-center">
-            <HiOutlineCurrencyRupee className="w-5 h-5 text-[#059669]" />
+          <div className="w-12 h-12 rounded-2xl bg-primary/15 flex items-center justify-center">
+            <HiOutlineCurrencyRupee className="w-5 h-5 text-primary" />
           </div>
           <div className="flex-1">
             <p className="text-[11px] text-muted uppercase font-semibold tracking-wider">Monthly Income</p>
@@ -124,7 +128,7 @@ export default function SettingsPage() {
           </div>
           <button
             onClick={openEditor}
-            className="p-2 rounded-2xl hover:bg-[#D1FAE5] transition-colors text-[#059669]"
+            className="p-2 rounded-2xl hover:bg-primary/15 transition-colors text-primary"
           >
             <HiOutlinePencilSquare className="w-5 h-5" />
           </button>
@@ -133,8 +137,8 @@ export default function SettingsPage() {
         {/* Salary Date (if fixed income) */}
         {profile?.incomeType === "fixed" && (
           <div className="flex items-center gap-4 p-5">
-            <div className="w-12 h-12 rounded-2xl bg-[#DBEAFE] flex items-center justify-center">
-              <HiOutlineCalendarDays className="w-5 h-5 text-[#3B82F6]" />
+            <div className="w-12 h-12 rounded-2xl bg-needs/15 flex items-center justify-center">
+              <HiOutlineCalendarDays className="w-5 h-5 text-needs" />
             </div>
             <div className="flex-1">
               <p className="text-[11px] text-muted uppercase font-semibold tracking-wider">Salary Date</p>
@@ -144,7 +148,7 @@ export default function SettingsPage() {
             </div>
             <button
               onClick={openEditor}
-              className="p-2 rounded-2xl hover:bg-[#D1FAE5] transition-colors text-[#059669]"
+              className="p-2 rounded-2xl hover:bg-primary/15 transition-colors text-primary"
             >
               <HiOutlinePencilSquare className="w-5 h-5" />
             </button>
@@ -154,8 +158,8 @@ export default function SettingsPage() {
 
       {/* Edit Income Modal */}
       {editing && (
-        <div className="fixed inset-0 z-50 flex items-end lg:items-center justify-center bg-black/50 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-md bg-surface border border-border-subtle rounded-t-3xl lg:rounded-3xl p-6 animate-slide-in">
+        <div className="fixed inset-0 z-50 flex items-end lg:items-center justify-center bg-black/60 backdrop-blur-sm animate-fade-in">
+          <div className="w-full max-w-md bg-surface-raised border border-border rounded-t-3xl lg:rounded-3xl p-6 animate-slide-in">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-base font-bold font-[family-name:var(--font-display)]">Edit Income</h3>
               <button onClick={() => setEditing(false)} className="p-1.5 rounded-lg hover:bg-surface-overlay transition-colors">
@@ -174,7 +178,7 @@ export default function SettingsPage() {
                 value={incomeValue}
                 onChange={(e) => setIncomeValue(e.target.value)}
                 placeholder="50000"
-                className="w-full h-14 pl-10 pr-4 rounded-2xl bg-surface-raised border border-border-subtle text-xl font-bold text-foreground font-[family-name:var(--font-mono)] placeholder:text-muted/30 focus:outline-none focus:border-primary/50 transition-all"
+                className="w-full h-14 pl-10 pr-4 rounded-2xl bg-surface border border-border-subtle text-xl font-bold text-foreground font-[family-name:var(--font-mono)] placeholder:text-muted/30 focus:outline-none focus:border-primary/50 transition-all"
               />
             </div>
 
@@ -186,7 +190,7 @@ export default function SettingsPage() {
                   className={clsx(
                     "px-3 py-1.5 rounded-full text-xs font-semibold transition-all border",
                     Number(incomeValue) === amt
-                      ? "bg-[#D1FAE5] border-[#059669]/30 text-[#059669]"
+                      ? "bg-primary/15 border-primary/30 text-primary"
                       : "bg-surface-overlay border-border-subtle text-muted hover:text-foreground hover:border-border"
                   )}
                 >
@@ -210,7 +214,7 @@ export default function SettingsPage() {
                         "h-9 rounded-lg text-xs font-bold transition-all",
                         Number(salaryDateValue) === day
                           ? "bg-primary text-white shadow-md shadow-primary/25"
-                          : "bg-surface-raised border border-border-subtle text-muted hover:text-foreground hover:border-border"
+                          : "bg-surface border border-border-subtle text-muted hover:text-foreground hover:border-border"
                       )}
                     >
                       {day}
@@ -223,7 +227,7 @@ export default function SettingsPage() {
             <button
               onClick={handleSave}
               disabled={saving || !incomeValue}
-              className="w-full h-14 rounded-2xl bg-[#059669] text-white font-semibold text-base shadow-lg shadow-[#059669]/25 disabled:opacity-40 transition-all hover:bg-[#047857] hover:shadow-xl flex items-center justify-center gap-2"
+              className="w-full h-14 rounded-2xl bg-primary text-white font-semibold text-base shadow-lg shadow-primary/25 disabled:opacity-40 transition-all hover:bg-primary-dark hover:shadow-xl flex items-center justify-center gap-2"
             >
               <HiOutlineCheck className="w-5 h-5" />
               {saving ? "Saving..." : "Save Changes"}
@@ -231,6 +235,40 @@ export default function SettingsPage() {
           </div>
         </div>
       )}
+
+      {/* Theme toggle */}
+      <div className="card p-5 mt-6 flex items-center gap-4">
+        <div className="w-12 h-12 rounded-2xl bg-accent/15 flex items-center justify-center">
+          {theme === "dark" ? (
+            <HiOutlineMoon className="w-5 h-5 text-accent" />
+          ) : (
+            <HiOutlineSun className="w-5 h-5 text-accent" />
+          )}
+        </div>
+        <div className="flex-1">
+          <p className="text-[11px] text-muted uppercase font-semibold tracking-wider">Appearance</p>
+          <p className="text-sm text-foreground">{theme === "dark" ? "Dark Mode" : "Light Mode"}</p>
+        </div>
+        <button
+          onClick={toggleTheme}
+          className="relative w-14 h-8 rounded-full bg-surface-overlay border border-border-subtle transition-colors"
+        >
+          <span
+            className={clsx(
+              "absolute top-1 w-6 h-6 rounded-full transition-all duration-300 flex items-center justify-center",
+              theme === "dark"
+                ? "left-7 bg-accent shadow-md shadow-accent/25"
+                : "left-1 bg-primary shadow-md shadow-primary/25"
+            )}
+          >
+            {theme === "dark" ? (
+              <HiOutlineMoon className="w-3.5 h-3.5 text-white" />
+            ) : (
+              <HiOutlineSun className="w-3.5 h-3.5 text-white" />
+            )}
+          </span>
+        </button>
+      </div>
 
       {/* Sign out */}
       <button

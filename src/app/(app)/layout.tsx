@@ -25,8 +25,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-10 w-10 rounded-full border-[3px] border-primary border-t-transparent animate-spin" />
+          <p className="text-sm font-medium text-muted">Loading...</p>
+        </div>
       </div>
     );
   }
@@ -34,19 +37,14 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   if (!user || !profile?.onboardingComplete) return null;
 
   return (
-    <div className="min-h-screen">
-      {/* Desktop sidebar */}
+    <div className="min-h-screen bg-background transition-colors duration-300">
       <Sidebar />
-
-      {/* Main content area */}
-      <div className="lg:ml-64">
+      <div className="lg:ml-72">
         <TopBar />
-        <main className="px-5 pb-24 lg:pb-10 max-w-lg mx-auto lg:max-w-5xl lg:px-8">
+        <main className="px-5 pb-28 lg:pb-10 max-w-lg mx-auto lg:max-w-5xl lg:px-8">
           {children}
         </main>
       </div>
-
-      {/* Mobile bottom nav */}
       <BottomNav />
     </div>
   );
