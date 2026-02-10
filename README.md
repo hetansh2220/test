@@ -1,37 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Expensio
+
+A smart personal finance tracker built for Indians. Track spending, set budgets with the 50/30/20 rule, manage bills & EMIs, take on saving challenges, and get AI-powered financial advice — all in one place.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router) + React 19 + TypeScript
+- **Styling:** Tailwind CSS 4, Montserrat & JetBrains Mono fonts
+- **Auth & Database:** Firebase (Authentication + Firestore)
+- **AI:** Google Gemini (gemini-flash-lite) for chat assistant & challenge generation
+- **Data Fetching:** TanStack React Query 5
+- **Charts:** Recharts 3
+- **Icons:** React Icons (HeroIcons v2)
+
+## Features
+
+- **Dashboard** — Balance, income, expenses, savings, financial health score, alerts
+- **Transactions** — Log income, expenses, and savings with categories (Needs / Wants / EMI)
+- **Budget Tracking** — Monthly budgets using the 50/30/20 rule with visual progress bars
+- **Bills & EMI Manager** — Track due dates, payment status, overdue alerts, EMI progress
+- **Saving Challenges** — Gamified daily/weekly saving goals with check-in tracking
+- **AI Finance Assistant** — Personalized advice powered by Gemini, context-aware to your finances
+- **Financial Learning** — Bite-sized articles on budgeting, saving, and debt awareness
+- **Dark / Light Theme** — Persistent theme toggle with system preference detection
+- **Onboarding** — Personalized setup capturing profession, income type, and salary date
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+
+- A Firebase project with Authentication and Firestore enabled
+- A Google AI (Gemini) API key
+
+### Environment Variables
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_FIREBASE_API_KEY=
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_FIREBASE_APP_ID=
+GEMINI_API_KEY=
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install & Run
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Learn More
+### Build for Production
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/
+│   ├── (app)/           # Protected routes (dashboard, transactions, budget, etc.)
+│   ├── (auth)/          # Public auth routes (login, signup)
+│   ├── api/             # API routes (assistant, challenge suggestions)
+│   ├── onboarding/      # First-time user setup
+│   ├── layout.tsx       # Root layout with providers
+│   └── page.tsx         # Landing page
+├── components/layout/   # TopBar, BottomNav, Sidebar
+├── hooks/               # useTransactions, useBudget, useBills, useChallenges
+├── lib/
+│   ├── firebase/        # Firebase config, auth, firestore utilities
+│   ├── gemini/          # Gemini AI client
+│   ├── constants/       # Routes, categories, professions, learning content
+│   └── utils/           # Health score, budget alerts, currency formatting
+├── providers/           # AuthProvider, QueryProvider, ThemeProvider, ToastProvider
+└── types/               # TypeScript interfaces
+```
 
-## Deploy on Vercel
+## Financial Health Score
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The health score (0–100) is calculated from four weighted factors:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# test
+| Factor                  | Weight |
+| ----------------------- | ------ |
+| Budget Adherence        | 30%    |
+| Savings Rate (≥20%)     | 30%    |
+| Bill Punctuality        | 20%    |
+| Challenge Participation | 20%    |
+
+**Labels:** Good (80+), Average (50–79), Poor (<50)
+
+## License
+
+Private project. All rights reserved.

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAuth } from "@/providers/AuthProvider";
 import { useTheme } from "@/providers/ThemeProvider";
 import { ROUTES } from "@/lib/constants/routes";
@@ -141,14 +142,19 @@ const mockTransactions = [
 ];
 
 export default function LandingPage() {
-  const { user, profile } = useAuth();
+  const { user, profile, loading } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const ctaHref =
-    user && profile?.onboardingComplete ? ROUTES.DASHBOARD : ROUTES.SIGNUP;
-  const ctaText =
-    user && profile?.onboardingComplete ? "Go to Dashboard" : "Get Started Free";
+  useEffect(() => {
+    if (loading) return;
+    if (user && profile?.onboardingComplete) {
+      router.replace(ROUTES.DASHBOARD);
+    } else if (user && !profile?.onboardingComplete) {
+      router.replace(ROUTES.ONBOARDING);
+    }
+  }, [user, profile, loading, router]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -168,6 +174,10 @@ export default function LandingPage() {
   }, []);
 
   const handleNavClick = () => setMobileMenuOpen(false);
+
+  if (loading || user) {
+    return null;
+  }
 
   const GAUGE_R = 24;
   const GAUGE_C = 2 * Math.PI * GAUGE_R;
@@ -257,10 +267,10 @@ export default function LandingPage() {
                 Sign In
               </Link>
               <Link
-                href={ctaHref}
+                href={ROUTES.SIGNUP}
                 className="px-5 py-2.5 rounded-2xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-all shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/25"
               >
-                {ctaText}
+                Get Started Free
               </Link>
             </div>
 
@@ -318,11 +328,11 @@ export default function LandingPage() {
                   Sign In
                 </Link>
                 <Link
-                  href={ctaHref}
+                  href={ROUTES.SIGNUP}
                   onClick={handleNavClick}
                   className="flex-1 text-center py-3 rounded-2xl bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors"
                 >
-                  {ctaText}
+                  Get Started Free
                 </Link>
               </div>
             </div>
@@ -370,11 +380,11 @@ export default function LandingPage() {
 
                 <div className="flex flex-wrap gap-4 mt-10">
                   <Link
-                    href={ctaHref}
+                    href={ROUTES.SIGNUP}
                     className="group relative px-8 py-4 rounded-2xl bg-primary text-white font-bold text-base overflow-hidden transition-all shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/30 hover:-translate-y-1"
                   >
                     <span className="relative z-10 flex items-center gap-2">
-                      {ctaText}
+                      Get Started Free
                       <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
@@ -800,10 +810,10 @@ export default function LandingPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <Link
-                href={ctaHref}
+                href={ROUTES.SIGNUP}
                 className="px-10 py-4 rounded-2xl bg-white text-primary font-bold text-base hover:bg-white/90 transition-all shadow-lg shadow-black/10 hover:-translate-y-0.5 active:translate-y-0"
               >
-                {ctaText}
+                Get Started Free
               </Link>
               <Link
                 href={ROUTES.LOGIN}
