@@ -157,6 +157,7 @@ export default function LandingPage() {
   }, [user, profile, loading, router]);
 
   useEffect(() => {
+    if (loading || user) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -171,7 +172,7 @@ export default function LandingPage() {
     const els = document.querySelectorAll(".lp-reveal");
     els.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, []);
+  }, [loading, user]);
 
   const handleNavClick = () => setMobileMenuOpen(false);
 
